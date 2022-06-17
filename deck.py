@@ -6,8 +6,9 @@ class Deck():
     def __init__(self) -> None:
         self.card_list = []
 
-    def add_card(self, card):
-        self.card_list.append(card)
+    def add_cards(self, cards_list):
+        for card in cards_list:
+            self.card_list.append(card)
 
     def pop_card(self, index):
         del self.card_list[index]
@@ -24,12 +25,8 @@ class LevelDeck(Deck):
         super().__init__()
         self.highlited_card = 0
 
-    def add_card(self, card):
-        super().add_card(card)
-
     def copy_deck(self, deck):
-        for card in deck:
-            self.add_card(copy.copy(card))
+        super().add_cards(copy.copy(deck))
 
     def choose_card(self, increment):
         if increment:

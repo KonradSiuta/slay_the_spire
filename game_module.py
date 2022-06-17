@@ -38,3 +38,5 @@ CARD_TEST_IMAGE = pygame.transform.scale(pygame.image.load(os.path.join(assets_p
 
 PLAYER_TEST_IMAGE = pygame.transform.scale(pygame.image.load(os.path.join(assets_path, "player_stand_R.png")).convert_alpha(), (P_WIDTH, P_HEIGHT))
 ENEMY_TEST_IMAGE = pygame.transform.scale(pygame.image.load(os.path.join(assets_path, "bat_fly1_L.png")).convert_alpha(), (80, 60))
+HEALTH_ICON = pygame.transform.scale(pygame.image.load(os.path.join(assets_path, "heart.png")).convert_alpha(), (40, 40))
+ENERGY_ICON = pygame.transform.scale(pygame.image.load(os.path.join(assets_path, "Energia.png")).convert_alpha(), (40, 40))

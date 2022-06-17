@@ -5,11 +5,11 @@ os.environ['SDL_VIDEO_CENTERED'] = '1'
 
 pygame.init()
 
-screen = pygame.display.set_mode(gm.SCREENSIZE)
+screen = pygame.display.set_mode(gm.SCREEN_SIZE)
 clock = pygame.time.Clock()
 
 window_open = True
-text = gm.FONT.render('quit', True, (255, 255, 255))
+text = gm.CARD_TITLE_FONT.render('quit', True, (255, 255, 255))
 
 while window_open:
     screen.blit(gm.BG_IMAGE, (0, 0))

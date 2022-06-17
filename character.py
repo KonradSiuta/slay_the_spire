@@ -13,8 +13,10 @@ class Character(pygame.sprite.Sprite):
     #     surface.blit(self.image, (cords[2] / 2, cords[3] + 100))
 
 class Player(Character):
-    def __init__(self, image, max_health) -> None:
+    def __init__(self, image, max_health, max_energy) -> None:
         super().__init__(image, max_health)
+        self.max_energy = max_energy
+        self.energy = max_energy
     
     def draw(self, surface, cords):
         surface.blit(self.image, (cords[0] - self.rect.centerx, cords[1] - self.rect.bottom))
@@ -29,9 +31,18 @@ class Player(Character):
         remaining_health_bar.fill(gm.RED)
         lost_health_bar.fill(gm.DARKRED)
 
+    def print_health_status(self, surface, cords):
+        text = gm.CARD_TITLE_FONT.render(f"{self.health}/{self.max_health}", True, (255,255,255))
+        surface.blit(text, cords)
+    
+    def print_energy_status(self, surface, cords):
+        text = gm.CARD_TITLE_FONT.render(f"{self.energy}/{self.max_energy}", True, (255,255,255))
+        surface.blit(text, cords)
+
 class Enemy(Character):
     def __init__(self, image, max_health) -> None:
         super().__init__(image, max_health)
+        self.selected = False
 
     def draw(self, surface, cords):
         surface.blit(self.image, (cords[0] - self.rect.centerx, cords[1] - self.rect.bottom))
@@ -45,3 +56,7 @@ class Enemy(Character):
 
         remaining_health_bar.fill(gm.RED)
         lost_health_bar.fill(gm.DARKRED)
+    
+    def draw_selection_indicator(self, surface, cords):
+        if self.selected:
+            pygame.draw.polygon(surface, gm.RED, [(cords[0] - 20, cords[1]), (cords[0] + 20, cords[1]), (cords [0], cords[1] + 30)])

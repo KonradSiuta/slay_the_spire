@@ -3,7 +3,7 @@ from pygame.locals import *
 import game_module as gm
 
 class Card(pygame.sprite.Sprite):
-    def __init__(self, image, title, description, cost):
+    def __init__(self, image, title, description, cost, value):
         super().__init__()
         # atrybuty graficzne
         self.image = image
@@ -20,6 +20,8 @@ class Card(pygame.sprite.Sprite):
         self.energy_cost = cost
         self.energy_text = gm.CARD_TITLE_FONT.render(str(self.energy_cost), True, gm.GREEN)
         self.energy_rect = None
+
+        self.value = value
 
     def set_rects(self):
         self.image_rect = self.image.get_rect()
@@ -59,8 +61,8 @@ class Card(pygame.sprite.Sprite):
         self.downscaled = False
 
 class AttackCard(Card):
-    def __init__(self, image, title, description, cost):
-        super().__init__(image, title, description, cost)
+    def __init__(self, image, title, description, cost, value):
+        super().__init__(image, title, description, cost, value)
 
     def set_rects(self):
         return super().set_rects()
@@ -73,9 +75,12 @@ class AttackCard(Card):
         if not self.downscaled:
             surface.blit(card_type, (gm.C_WIDTH / 2 - card_type_rect.centerx, gm.C_HEIGHT - card_type_rect.bottom - 5))
 
+    def cast(self, target):
+        target.take_damage(self.value)
+
 class HealCard(Card):
-    def __init__(self, image, title, description, cost):
-        super().__init__(image, title, description, cost)
+    def __init__(self, image, title, description, cost, value):
+        super().__init__(image, title, description, cost, value)
 
     def set_rects(self):
         return super().set_rects()
@@ -87,9 +92,12 @@ class HealCard(Card):
         card_type_rect = card_type.get_rect()
         surface.blit(card_type, (gm.C_WIDTH / 2 - card_type_rect.centerx, gm.C_HEIGHT - card_type_rect.bottom - 5))
 
+    def cast(self, target):
+        target.heal_up(self.value)
+
 class ArmorCard(Card):
-    def __init__(self, image, title, description, cost):
-        super().__init__(image, title, description, cost)
+    def __init__(self, image, title, description, cost, value):
+        super().__init__(image, title, description, cost, value)
 
     def set_rects(self):
         return super().set_rects()
@@ -100,3 +108,6 @@ class ArmorCard(Card):
             card_type = gm.CARD_TYPE_FONT.render("Armor", True, (255, 255, 255))
             card_type_rect = card_type.get_rect()
             surface.blit(card_type, (gm.C_WIDTH / 2 - card_type_rect.centerx, gm.C_HEIGHT - card_type_rect.bottom - 5))
+
+    def cast(self, target):
+        target.gain_block(self.value)

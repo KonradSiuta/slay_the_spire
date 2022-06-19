@@ -40,3 +40,5 @@ PLAYER_TEST_IMAGE = pygame.transform.scale(pygame.image.load(os.path.join(assets
 ENEMY_TEST_IMAGE = pygame.transform.scale(pygame.image.load(os.path.join(assets_path, "bat_fly1_L.png")).convert_alpha(), (80, 60))
 HEALTH_ICON = pygame.transform.scale(pygame.image.load(os.path.join(assets_path, "heart.png")).convert_alpha(), (40, 40))
 ENERGY_ICON = pygame.transform.scale(pygame.image.load(os.path.join(assets_path, "Energia.png")).convert_alpha(), (40, 40))
+BLOCK_ICON = pygame.transform.scale(pygame.image.load(os.path.join(assets_path, "a_shield_kite_bronze.png")).convert_alpha(), (40, 40))
+SMALLER_BLOCK_ICON = pygame.transform.scale(pygame.image.load(os.path.join(assets_path, "a_shield_kite_bronze.png")).convert_alpha(), (30, 30))

@@ -1,4 +1,5 @@
 import copy
+from matplotlib.pyplot import text
 import pygame
 import game_module as gm
 from card import *
@@ -48,7 +49,7 @@ class LevelDeck(Deck):
         if len(self.card_list) > 0:
             self.card_list[self.highlited_card].draw(surface, (0, 0), False)
         else:
-            text = gm.CARD_TITLE_FONT.render("Empty hand", True, (255, 255, 255))
+            text = gm.CARD_TITLE_FONT.render("Empty hand", True, gm.WHITE)
             surface.blit(text, (0, 0))
 
     def print_level_deck(self, surface):
@@ -59,10 +60,12 @@ class LevelDeck(Deck):
         super().pop_card(self.highlited_card)
         self.choose_card(False)
 
-    def play_card(self, target, player_status):
+    def play_card(self, target, player_status, surface, surface_rect):
         if self.card_list[self.highlited_card].energy_cost <= player_status.energy:
             self.card_list[self.highlited_card].cast(target)
             player_status.energy -= self.card_list[self.highlited_card].energy_cost
             self.pop_card()
         else:
-            print("Out of energy")
+            text = gm.CARD_TITLE_FONT.render("Not enough energy", True, gm.WHITE)
+            text_rect = text.get_rect()
+            surface.blit(text, (surface_rect.centerx - text_rect.centerx, surface_rect.centery - text_rect.centery))

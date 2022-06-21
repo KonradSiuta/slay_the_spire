@@ -34,6 +34,9 @@ class Character(pygame.sprite.Sprite):
     def gain_block(self, value):
         self.block += value
 
+    def update(self) -> None:
+        super().update()
+
 class Player(Character):
     def __init__(self, image, max_health, max_energy) -> None:
         super().__init__(image, max_health)
@@ -57,7 +60,7 @@ class Player(Character):
         remaining_health_bar_rect = remaining_health_bar.get_rect()
         lost_health_bar = pygame.Surface.subsurface(health_bar_subsurface, (remaining_health_bar_rect.right, health_bar_rect.top, (self.max_health - self.health) * gm.HB_UNIT_WIDTH, gm.HB_UNIT_HEIGHT))
 
-        text = gm.CARD_TYPE_FONT.render(f"{self.health}/{self.max_health}", True, (255,255,255))
+        text = gm.CARD_TYPE_FONT.render(f"{self.health}/{self.max_health}", True,gm.WHITE)
         text_rect = text.get_rect()
         
         remaining_health_bar.fill(gm.RED)
@@ -66,15 +69,15 @@ class Player(Character):
         health_bar_subsurface.blit(text, (health_bar_rect.centerx - text_rect.centerx, health_bar_rect.centery - text_rect.centery))
 
     def print_health_status(self, surface, cords):
-        text = gm.CARD_TITLE_FONT.render(f"{self.health}/{self.max_health}", True, (255,255,255))
+        text = gm.CARD_TITLE_FONT.render(f"{self.health}/{self.max_health}", True, gm.WHITE)
         surface.blit(text, cords)
     
     def print_energy_status(self, surface, cords):
-        text = gm.CARD_TITLE_FONT.render(f"{self.energy}/{self.max_energy}", True, (255,255,255))
+        text = gm.CARD_TITLE_FONT.render(f"{self.energy}/{self.max_energy}", True, gm.WHITE)
         surface.blit(text, cords)
     
     def print_block_status(self, surface, cords):
-        text = gm.CARD_TITLE_FONT.render(f"{self.block}", True, (255,255,255))
+        text = gm.CARD_TITLE_FONT.render(f"{self.block}", True, gm.WHITE)
         surface.blit(text, cords)
 
 class Enemy(Character):
@@ -104,7 +107,7 @@ class Enemy(Character):
         remaining_health_bar_rect = remaining_health_bar.get_rect()
         lost_health_bar = pygame.Surface.subsurface(health_bar_subsurface, (remaining_health_bar_rect.right, health_bar_rect.top, (self.max_health - self.health) * gm.HB_UNIT_WIDTH, gm.HB_UNIT_HEIGHT))
 
-        text = gm.CARD_TYPE_FONT.render(f"{self.health}/{self.max_health}", True, (255,255,255))
+        text = gm.CARD_TYPE_FONT.render(f"{self.health}/{self.max_health}", True, gm.WHITE)
         text_rect = text.get_rect()
 
         remaining_health_bar.fill(gm.RED)
@@ -117,7 +120,7 @@ class Enemy(Character):
 
     def draw_block_status(self, surface, cords):
         if self.block >= 0:
-            text = gm.CARD_TITLE_FONT.render(f"{self.block}", True, (255, 255, 255))
+            text = gm.CARD_TITLE_FONT.render(f"{self.block}", True, gm.WHITE)
             text_rect = text.get_rect()
 
             surface.blit(gm.SMALLER_BLOCK_ICON, (cords[0] - text_rect.centerx - 30, cords[1] + 10))

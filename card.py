@@ -11,10 +11,10 @@ class Card(pygame.sprite.Sprite):
         self._shape = pygame.Surface((gm.C_WIDTH, gm.C_HEIGHT))
         self.rect = None
         self.title = title
-        self.title_text = gm.CARD_TITLE_FONT.render(self.title, True, (255, 255, 255))
+        self.title_text = gm.CARD_TITLE_FONT.render(self.title, True, gm.WHITE)
         self.title_rect = None
         self.description = description
-        self.description_text = gm.CARD_DESCRIPTION_FONT.render(self.description, True, (255, 255, 255))
+        self.description_text = gm.CARD_DESCRIPTION_FONT.render(self.description, True, gm.WHITE)
         self.description_rect = None
         self.downscaled = False
         self.energy_cost = cost
@@ -51,13 +51,13 @@ class Card(pygame.sprite.Sprite):
     def downscale(self):
         self._shape = pygame.transform.scale(self._shape, gm.SCALED_CARD_SIZE)
         self.image = pygame.transform.scale(self.image, gm.SCALED_CARD_IMAGE_SIZE)
-        self.title_text = gm.SCALED_TITLE_FONT.render(self.title, True, (255, 255, 255))
+        self.title_text = gm.SCALED_TITLE_FONT.render(self.title, True, gm.WHITE)
         self.downscaled = True
     
     def upscale(self):
         self._shape = pygame.transform.scale(self._shape, gm.CARD_SIZE)
         self.image = pygame.transform.scale(self.image, gm.CARD_IMAGE_SIZE)
-        self.title_text = gm.CARD_TITLE_FONT.render(self.title, True, (255, 255, 255))
+        self.title_text = gm.CARD_TITLE_FONT.render(self.title, True, gm.WHITE)
         self.downscaled = False
 
 class AttackCard(Card):
@@ -69,7 +69,7 @@ class AttackCard(Card):
 
     def draw(self, surface, cords, scaled):
         super().draw(surface, cords, scaled)
-        card_type = gm.CARD_TYPE_FONT.render("Attack", True, (255, 255, 255))
+        card_type = gm.CARD_TYPE_FONT.render("Attack", True, gm.WHITE)
         card_type_rect = card_type.get_rect()
         
         if not self.downscaled:
@@ -88,7 +88,7 @@ class HealCard(Card):
     def draw(self, surface, cords, scaled):
         super().draw(surface, cords, scaled)
         # if not self.downscaled:
-        card_type = gm.CARD_TYPE_FONT.render("Heal", True, (255, 255, 255))
+        card_type = gm.CARD_TYPE_FONT.render("Heal", True, gm.WHITE)
         card_type_rect = card_type.get_rect()
         surface.blit(card_type, (gm.C_WIDTH / 2 - card_type_rect.centerx, gm.C_HEIGHT - card_type_rect.bottom - 5))
 
@@ -105,7 +105,7 @@ class ArmorCard(Card):
     def draw(self, surface, cords, scaled):
         super().draw(surface, cords, scaled)
         if not self.downscaled:
-            card_type = gm.CARD_TYPE_FONT.render("Armor", True, (255, 255, 255))
+            card_type = gm.CARD_TYPE_FONT.render("Armor", True, gm.WHITE)
             card_type_rect = card_type.get_rect()
             surface.blit(card_type, (gm.C_WIDTH / 2 - card_type_rect.centerx, gm.C_HEIGHT - card_type_rect.bottom - 5))
 

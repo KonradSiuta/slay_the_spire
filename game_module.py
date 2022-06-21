@@ -1,5 +1,4 @@
-import pygame, os, sys
-from card import *
+import pygame, os
 
 pygame.font.init()
 assets_path = os.path.join(os.path.dirname(__file__), "assets")
@@ -27,14 +26,22 @@ CARD_DESCRIPTION_FONT = pygame.font.Font(pygame.font.get_default_font(), 14)
 
 CARD_TYPE_FONT = pygame.font.Font(pygame.font.get_default_font(), 10)
 
+GAME_TITLE_FONT = pygame.font.Font(pygame.font.get_default_font(), 50)
+
+GAME_OPTIONS_FONT = pygame.font.Font(pygame.font.get_default_font(), 38)
+
 LIGHTBLUE = pygame.color.THECOLORS['lightblue']
 GREEN = pygame.color.THECOLORS['green']
 RED = pygame.color.THECOLORS['red']
 BLACK = pygame.color.THECOLORS['black']
 DARKRED = pygame.Color(117, 11, 4)
+WHITE = pygame.color.THECOLORS['white']
 
-BG_IMAGE = pygame.image.load(os.path.join(assets_path, "background3-720.png")).convert()
-CARD_TEST_IMAGE = pygame.transform.scale(pygame.image.load(os.path.join(assets_path, "parallax-forest.png")).convert(), (CI_WIDTH, CI_HEIGHT))
+BG_LEVEL_IMAGE = pygame.transform.scale(pygame.image.load(os.path.join(assets_path, "background3-720.png")).convert(), SCREEN_SIZE)
+BG_MENU_IMAGE = pygame.transform.scale(pygame.image.load(os.path.join(assets_path, "parallax-mountain.png")).convert(), SCREEN_SIZE)
+BG_PAUSE_IMAGE = pygame.transform.scale(pygame.image.load(os.path.join(assets_path, "parallax-mountain.png")).convert_alpha(), SCREEN_SIZE)
+
+CARD_TEST_IMAGE = pygame.transform.scale(pygame.image.load(os.path.join(assets_path, "parallax-forest.png")).convert_alpha(), (CI_WIDTH, CI_HEIGHT))
 
 PLAYER_TEST_IMAGE = pygame.transform.scale(pygame.image.load(os.path.join(assets_path, "player_stand_R.png")).convert_alpha(), (P_WIDTH, P_HEIGHT))
 ENEMY_TEST_IMAGE = pygame.transform.scale(pygame.image.load(os.path.join(assets_path, "bat_fly1_L.png")).convert_alpha(), (80, 60))

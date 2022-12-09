@@ -1,13 +1,13 @@
 from game import *
 
 player = Player(gm.PLAYER_TEST_IMAGE, 25, 5)
-enemy1 = Enemy(gm.ENEMY_TEST_IMAGE, 5)
-enemy2 = Enemy(gm.ENEMY_TEST_IMAGE, 5)
-enemy3 = Enemy(gm.ENEMY_TEST_IMAGE, 5)
-enemy4 = Enemy(gm.ENEMY_TEST_IMAGE, 5)
-enemy5 = Enemy(gm.ENEMY_TEST_IMAGE, 5)
-enemy6 = Enemy(gm.ENEMY_TEST_IMAGE, 5)
-enemy7 = Enemy(gm.ENEMY_TEST_IMAGE, 5)
+enemy1 = Enemy(gm.ENEMY_IMAGES[0], 5)
+enemy2 = Enemy(gm.ENEMY_IMAGES[0], 5)
+enemy3 = Enemy(gm.ENEMY_IMAGES[0], 5)
+enemy4 = Enemy(gm.ENEMY_IMAGES[0], 5)
+enemy5 = Enemy(gm.ENEMY_IMAGES[0], 5)
+enemy6 = Enemy(gm.ENEMY_IMAGES[0], 5)
+enemy7 = Enemy(gm.ENEMY_IMAGES[0], 5)
 
 list_of_enemies1 = [enemy3, enemy4, enemy5, enemy6, enemy7]
 list_of_enemies2 = [enemy1, enemy2]

@@ -1,10 +1,9 @@
 import sys
-import pygame, os
+import pygame
 import game_module as gm
 from card import *
 from deck import *
 from character import *
-import copy
 from random import randint
 from scene import *
 
@@ -51,6 +50,10 @@ class Level(Scene):
         else:
             self.is_player_turn = True
 
+    def animate(self):
+        for enemy in self.list_of_enemies:
+            enemy.image = gm.ENEMY_IMAGES[(gm.ENEMY_IMAGES.index(enemy.image) + 1) % 2]
+
     def draw(self):
         self.screen.blit(self.image, (0, 0))
         self.platform_surface.fill(gm.BLACK)
@@ -71,6 +74,7 @@ class Level(Scene):
         self.player.print_block_status(self.status_bar, (300, gm.SB_HEIGHT / 2 - 17))
 
         self.draw_enemies()
+        self.animate()
 
     def draw_enemies(self):
         for i in range(len(self.list_of_enemies)):
@@ -157,10 +161,13 @@ class Level(Scene):
                     if len(self.level_deck.card_list) > 0:
                         if isinstance((self.level_deck.card_list[self.level_deck.highlited_card]), AttackCard):
                             self.level_deck.play_card(self.list_of_enemies[self.find_selected_enemy() - 1], self.player, self.notification_surface, self.notification_surface_rect)
+                            pygame.mixer.Sound.play(gm.ATTACK_SOUND)
                         elif isinstance((self.level_deck.card_list[self.level_deck.highlited_card]), HealCard):
                             self.level_deck.play_card(self.player, self.player, self.notification_surface, self.notification_surface_rect)
+                            pygame.mixer.Sound.play(gm.HEAL_SOUND)
                         elif isinstance((self.level_deck.card_list[self.level_deck.highlited_card]), ArmorCard):
                             self.level_deck.play_card(self.player, self.player, self.notification_surface, self.notification_surface_rect)
+                            pygame.mixer.Sound.play(gm.ARMOR_SOUND)
                 if event.key == pygame.K_UP:
                     self.select_enemy()
                 if event.key == pygame.K_BACKSPACE:

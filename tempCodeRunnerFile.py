@@ -1,1 +1,0 @@
-or event in pygame.event.get():

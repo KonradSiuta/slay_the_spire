@@ -1,6 +1,4 @@
 import copy
-from matplotlib.pyplot import text
-import pygame
 import game_module as gm
 from card import *
 

@@ -16,7 +16,10 @@ class Game():
         self.scenes = {"MAINMENU": MainMenu("MAINMENU",self.screen, gm.BG_MENU_IMAGE), "PAUSEMENU": PauseMenu("PAUSEMENU", self.screen, gm.BG_PAUSE_IMAGE), "LOSESCREEN": LoseScene("LOSESCREEN", self.screen, gm.BG_PAUSE_IMAGE), "VICTORYSCREEN": WinScene("VICTORYSCREEN", self.screen, gm.BG_PAUSE_IMAGE), "LEVEL1": Level("LEVEL1", self.screen, gm.BG_LEVEL_IMAGE, player, game_deck1, list_of_enemies1), "LEVEL": Level("LEVEL", self.screen, gm.BG_LEVEL_IMAGE, player, game_deck2, list_of_enemies2)}
         self.current_scene = self.scenes["MAINMENU"]
     
-   
+        pygame.mixer.init()
+        pygame.mixer.music.load(gm.BG_MUSIC)
+        pygame.mixer.music.play(-1, fade_ms = 1000)
+        pygame.mixer.music.set_volume(0.15)
             
     def game_loop(self):
         pygame.event.clear()
